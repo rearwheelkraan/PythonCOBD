@@ -3,6 +3,7 @@ from obd import ECU
 import time
 import os
 import random
+import keyboard
 
 ports = obd.scan_serial()      # return list of valid USB or RF ports
 print (ports)                    # ['/dev/ttyUSB0', '/dev/ttyUSB1']
@@ -19,12 +20,15 @@ def RPMTest():
 
 def RPMGraphicTest():
 
-    for x in range (1000):
+    while True:
+        print("########## Graphical Gauge Cluster ##########", end='\n')
+        print('\n')
         test = random.randint(1,9000)
-        print("#" * round(test/500))
+        print("#" * round(9000/200))
         print("RPM " + str(test))
         time.sleep(0.01)
         os.system('cls' if os.name == 'nt' else 'clear')
+
 
 def VINReadout():
     connection = obd.OBD(ports[0])
